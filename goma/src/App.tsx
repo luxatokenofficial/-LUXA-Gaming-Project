@@ -21,6 +21,7 @@ function App() {
   const { user, start_param } = useTelegramInitData();
   const [showSplashScreen, setShowSplashScreen] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(false);
+  const [signInError, setSignInError] = useState(false);
   const balance = useDebounce(userStore.balance, 500);
 
   useEffect(() => {
@@ -113,12 +114,24 @@ function App() {
       });
     };
 
-    signIn().then(() => setShowSplashScreen(false));
+    signIn()
+      .catch(() => setSignInError(true))
+      .finally(() => setShowSplashScreen(false));
   }, [user]);
 
   if (!user || isDisktop) return <PlayOnYourMobile />;
 
   if (showSplashScreen) return <SplashScreen />;
+
+  if (signInError)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
+        <h1 className="text-2xl font-bold uppercase">Unable to connect</h1>
+        <p className="mt-3 text-white/70">
+          The LUXA API is unavailable. Check the public API URL configuration.
+        </p>
+      </div>
+    );
 
   if (isFirstLoad)
     return <FirstTimeScreen startGame={() => setIsFirstLoad(false)} />;
