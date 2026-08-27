@@ -11,9 +11,10 @@ RUN apt-get update \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 COPY api/composer.json api/composer.lock ./
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install --no-dev --no-interaction --prefer-dist --no-scripts
 
 COPY api/ ./
-RUN chmod -R 775 storage bootstrap/cache
+RUN composer dump-autoload --no-dev --optimize \
+	&& chmod -R 775 storage bootstrap/cache
 
 CMD ["sh", "-c", "php artisan migrate --force && exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
