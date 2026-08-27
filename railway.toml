@@ -2,4 +2,5 @@
 builder = "DOCKERFILE"
 
 [deploy]
+healthcheckPath = "/api/popups"
 restartPolicyType = "ON_FAILURE"
