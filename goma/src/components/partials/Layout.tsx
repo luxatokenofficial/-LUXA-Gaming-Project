@@ -16,6 +16,8 @@ export default function Layout() {
   });
 
   useEffect(() => {
+    if (!window.Telegram?.WebApp?.BackButton) return;
+
     if (pathname !== "/") {
       window.Telegram.WebApp.BackButton.show();
     } else {
@@ -24,6 +26,8 @@ export default function Layout() {
   }, [pathname]);
 
   useEffect(() => {
+    if (!window.Telegram?.WebApp?.BackButton) return;
+
     window.Telegram.WebApp.BackButton.onClick(() => {
       navigate("/");
     });

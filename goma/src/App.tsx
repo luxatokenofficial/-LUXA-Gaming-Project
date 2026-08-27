@@ -12,7 +12,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
 
-const webApp = window.Telegram.WebApp;
+const webApp = window.Telegram?.WebApp;
 const isDisktop = false; // Blocco desktop disattivato per giocare anche da PC
 
 function App() {
@@ -24,6 +24,8 @@ function App() {
   const balance = useDebounce(userStore.balance, 500);
 
   useEffect(() => {
+    if (!webApp) return;
+
     webApp.setHeaderColor("#000");
     webApp.setBackgroundColor("#000");
     webApp.expand();
