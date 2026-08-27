@@ -13,9 +13,7 @@ import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
 
 const webApp = window.Telegram.WebApp;
-const isDisktop = import.meta.env.DEV
-  ? false
-  : Telegram.WebApp.platform === "tdesktop";
+const isDisktop = false; // Blocco desktop disattivato per giocare anche da PC
 
 function App() {
   const userStore = useUserStore();
