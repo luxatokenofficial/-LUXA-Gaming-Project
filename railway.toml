@@ -1,7 +1,5 @@
 [build]
-builder = "RAILPACK"
-buildCommand = "cd api && composer install --no-dev --optimize-autoloader"
+builder = "DOCKERFILE"
 
 [deploy]
-startCommand = "bash api/start.sh"
 restartPolicyType = "ON_FAILURE"
