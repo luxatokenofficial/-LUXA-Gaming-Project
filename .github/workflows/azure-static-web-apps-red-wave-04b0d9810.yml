@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
@@ -16,17 +17,30 @@ jobs:
     name: Build and Deploy Job
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
 
       - name: Check repository structure
         run: |
-          echo "=== ROOT ==="
+          echo "========================================"
+          echo "=== ROOT DIRECTORY ==="
+          echo "========================================"
           ls -la
-          echo "=== GOMA DEV ==="
+
+          echo ""
+          echo "========================================"
+          echo "=== GOMA DEV DIRECTORY ==="
+          echo "========================================"
           ls -la "./goma dev"
+
+          echo ""
+          echo "========================================"
+          echo "=== GOMA DEV FILES ==="
+          echo "========================================"
+          find "./goma dev" -maxdepth 2 -type f | sort
 
       - name: Build And Deploy
         id: builddeploy
