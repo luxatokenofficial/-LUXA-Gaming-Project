@@ -35,8 +35,8 @@ export default function SplashScreen() {
       <img src="/images/logo.png" alt="logo" className="h-48 max-w-full" />
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
-          <h1 className="text-6xl font-medium text-center uppercase text-shadow">
-            THE COOL FROG
+          <h1 className="px-4 text-4xl font-medium text-center uppercase text-shadow">
+            🌐 WELCOME TO LUXA MAINNET
           </h1>
           <img
             src="/images/loader.png"
@@ -44,9 +44,17 @@ export default function SplashScreen() {
             className="mt-3 animate-spin"
           />
           <p className="mt-3 text-sm font-bold uppercase text-primary">
-            Stay tuned
+            Status: ONLINE 🟢
           </p>
-          <p className="mt-1 font-medium">More info in official channels</p>
+          <div className="px-6 mt-3 space-y-1 text-sm font-medium text-center">
+            <p>Network: Binance Smart Chain (BSC)</p>
+            <p>Security: Secured &amp; Verified</p>
+            <p className="pt-2 text-white/70">
+              Welcome to the official portal of the LUXA ecosystem. Access
+              high-performance Web3 gaming, earn rewards, and track your
+              mainnet assets seamlessly.
+            </p>
+          </div>
           <div className="flex items-center gap-4 mt-6">
             {socialLinks.map((link) => (
               <a
